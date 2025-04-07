@@ -9,6 +9,7 @@
         robot
         crate
         base
+        loader
     ;todo: enumerate types and their hierarchy here, e.g. car truck bus - vehicle
     )
 
@@ -22,6 +23,9 @@
         (free ?r - robot)
         (carry ?r - robot ?c - crate)
         (at ?c - crate ?b - base)
+        (free_loader ?l - loader)
+        (on_belt ?c - crate)
+        (pick_load ?l - loader ?c - crate)
     ;todo: define predicates here
     )
 
@@ -99,6 +103,35 @@
             (at ?c ?b)
             (not (carry ?r ?c))
             (free ?r)
+        )
+    )
+    
+    (:action grasp
+        :parameters (?c - crate ?b - base ?l - loader)
+        :precondition (and 
+            (at ?c ?b)
+            (free_loader ?l)
+        )
+        :effect (and 
+            (not (at ?c ?b))
+            (not (free_loader ?l))
+            (pick_load ?l ?c)
+        )
+    )
+    (:durative-action loading
+        :parameters (?l - loader ?c - crate)
+        :duration (= ?duration 4)
+        :condition (and 
+            (over all (and 
+                (pick_load ?l ?c)
+            ))
+        )
+        :effect (and 
+            (at end (and 
+                (on_belt ?c)
+                (free_loader ?l)
+                (not (pick_load ?l ?c))
+            ))
         )
     )
     
