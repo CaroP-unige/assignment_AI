@@ -4,12 +4,14 @@
         robot1 robot2 - robot
         crate1 crate2 crate3 - crate
         base1 - base
+        loader1 - loader
     )
 
     (:init
         (at_base robot1 base1)
         (free robot1)
 
+        (free_loader loader1)
 
         (at_base robot2 base1)
         (free robot2)
@@ -39,9 +41,9 @@
     )
 
     (:goal (and
-        (at crate1 base1)
-        (at crate2 base1)
-        (at crate3 base1)
+        (on_belt crate1)
+        (on_belt crate2)
+        (on_belt crate3)
         ;todo: put the goal condition here
     ))
 
