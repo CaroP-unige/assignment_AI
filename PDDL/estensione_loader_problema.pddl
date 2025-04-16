@@ -37,6 +37,9 @@
         (= (weight crate2) 30)
         (= (weight crate3) 70)
 
+        (fragile crate1)
+        (not_fragile crate2)
+        (not_fragile crate3)
 
         (= (battery robot1) 20)
         (= (battery robot2) 20)
