@@ -50,8 +50,6 @@
         (fragile crate5)
         (not_fragile crate6)
         
-        
-
         (= (battery robot1) 20) ;carica iniziale robot1
         (= (battery robot2) 20) ;carica iniziale robot2
         (= (max_battery) 20)
