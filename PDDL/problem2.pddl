@@ -1,7 +1,7 @@
 (define (problem problem2) 
 (:domain definitivo)
     (:objects 
-       robot1 robot2 - robot
+        robot1 robot2 - robot
         crate1 crate2 crate3 crate4 crate5 crate6 - crate
         base1 - base
         loader1 - loader
