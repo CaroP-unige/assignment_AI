@@ -1,4 +1,4 @@
-(define (problem problema2_definitivo) 
+(define (problem problem2) 
 (:domain definitivo)
     (:objects 
        robot1 robot2 - robot
