@@ -23,20 +23,15 @@
         (at_base robot2 base1)
         (free robot2)
 
-        (=(velocity) 10)
-        (=(priority)2)
-
         (pickable_crate crate1)
         (pickable_crate crate2)
         (pickable_crate crate3)
         (pickable_crate crate4)
 
-
         (= (distance crate1 base1) 20)
         (= (distance crate2 base1) 20)
         (= (distance crate3 base1) 30)
         (= (distance crate4 base1) 10) 
-
 
         (= (weight crate1) 70)
         (= (weight crate2) 80)
