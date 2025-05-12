@@ -34,6 +34,7 @@
     (not_fragile ?c - crate)
     (groupA ?c - crate)
     (groupB ?c - crate)
+    (no_group ?c - crate)
     
 
 ;todo: define predicates here
@@ -44,11 +45,12 @@
     
     (battery ?r - robot)
     (distance ?c - crate ?b - base)
- (velocity)
+    (velocity)
     (weight ?c - crate)
     (max_battery)
     (free_base)
     (priority)
+    (max_priority)
 ;todo: define numeric functions here
 )
 
@@ -149,15 +151,49 @@
             ))
         )
         :effect (and 
-            (at end (and 
-                (carry ?r ?c)
+            (at start (and
                 (not (pickable_crate ?c))
+            ))
+            (at end (and 
+                (carry ?r ?c) 
                 (not (free ?r))
             ))
         )
     )
     
     ;drop a non fragile crate
+    (:durative-action drop
+        :parameters (?b - base ?c - crate ?r - robot)
+        :duration (= ?duration 1)
+        :condition (and 
+            (at start (and 
+                (carry ?r ?c)
+            ))
+            (over all (and 
+                (at_base ?r ?b)
+                (<= (weight ?c) 50)
+                (not_fragile ?c)
+                (<=(free_base)2)
+                (=(priority)(max_priority))
+                (no_group ?c)
+            ))
+        )
+        :effect (and 
+            (at start (and 
+                
+                (not (carry ?r ?c))
+                (increase (free_base) 1)
+            ))
+            (at end (and 
+                (at ?c ?b)
+                (free ?r)
+                
+                
+            ))
+        )
+    )
+    
+    
     (:durative-action drop_A
         :parameters (?b - base ?c - crate ?r - robot)
         :duration (= ?duration 1)
@@ -169,7 +205,7 @@
                 (at_base ?r ?b)
                 (<= (weight ?c) 50)
                 (not_fragile ?c)
-                (<(free_base)2)
+                (<=(free_base)2)
                 (groupA ?c)
             ))
         )
@@ -182,7 +218,7 @@
             (at end (and 
                 (at ?c ?b)
                 (free ?r)
-                (decrease (priority) 1)
+                
                 
             ))
         )
@@ -200,8 +236,8 @@
                 (at_base ?r ?b)
                 (<= (weight ?c) 50)
                 (not_fragile ?c)
-                (<(free_base)2)
-                (=(priority)0)
+                (<=(free_base)2)
+                (<=(priority)0)
                 (groupB ?c)
             ))
         )
@@ -328,12 +364,52 @@
             ))
         )
         :effect (and 
+            (at start (and
+                (not (pickable_crate ?c))
+            ))
             (at end (and 
                 (carry ?r1 ?c)
                 (carry ?r2 ?c)
-                (not (pickable_crate ?c))
+                
                 (not (free ?r1))
                 (not (free ?r2))
+            ))
+        )
+    )
+
+
+    (:durative-action drop_two_robot
+        :parameters (?b - base ?c - crate ?r1 - robot ?r2 - robot)
+        :duration (= ?duration 1)
+        :condition (and 
+            (at start (and 
+                (carry ?r1 ?c)
+                (carry ?r2 ?c)
+            ))
+            (over all (and 
+                (at_base ?r1 ?b)
+                (at_base ?r2 ?b)
+                (<=(free_base)2)
+                (no_group ?c)
+                (=(priority)(max_priority))
+            ))
+        )
+        :effect (and 
+            (at start (and 
+                
+                (not (carry ?r1 ?c))
+                (not (carry ?r2 ?c))
+                (increase (free_base) 1)
+
+            ))
+            (at end (and 
+                (at ?c ?b)
+                (free ?r1)
+                
+                (free ?r2)
+                
+                
+                
             ))
         )
     )
@@ -349,7 +425,7 @@
             (over all (and 
                 (at_base ?r1 ?b)
                 (at_base ?r2 ?b)
-                (<(free_base)2)
+                (<=(free_base)2)
                 (groupA ?c)
             ))
         )
@@ -359,7 +435,7 @@
                 (not (carry ?r1 ?c))
                 (not (carry ?r2 ?c))
                 (increase (free_base) 1)
-                (decrease (priority) 1)
+
             ))
             (at end (and 
                 (at ?c ?b)
@@ -384,9 +460,9 @@
             (over all (and 
                 (at_base ?r1 ?b)
                 (at_base ?r2 ?b)
-                (<(free_base)2)
+                (<=(free_base)2)
                 (groupB ?c)
-                (=(priority)0)
+                (<=(priority)0)
             ))
         )
         :effect (and 
@@ -418,6 +494,7 @@
             (not (at ?c ?b))
             (not (free_loader ?l))
             (pick_load ?l ?c)
+            (decrease (priority) 1)
         )
     )
     
@@ -474,6 +551,7 @@
             (not (at ?c ?b))
             (not (free_loader_leggero ?ll))
             (pick_load_leggero ?ll ?c)
+            (decrease (priority) 1)
         )
     )
     
@@ -486,6 +564,7 @@
             (over all (and 
                 (pick_load_leggero ?ll ?c)
                 (<(weight ?c) 50)
+                (not_fragile ?c)
             ))
         )
         :effect (and 
