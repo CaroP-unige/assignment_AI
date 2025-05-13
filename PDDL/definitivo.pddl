@@ -1,5 +1,3 @@
-;Header and description
-
 (define (domain definitivo)
 
 ;remove requirements that are not needed
@@ -35,6 +33,8 @@
     (groupA ?c - crate)
     (groupB ?c - crate)
     (no_group ?c - crate)
+    (not_working_together)
+    (working_together)
     
 
 ;todo: define predicates here
@@ -73,7 +73,11 @@
             ))
         )
         :effect (and 
-            (at start (and (not (at_base ?r ?b))))
+            (at start (and 
+            (not (at_base ?r ?b))
+            (not_working_together)
+            (not (working_together))
+            ))
             (at end (and 
                 (at_crate ?r ?c)(decrease (battery ?r) (/(distance ?c ?b)(velocity)))
             ))  
@@ -114,12 +118,13 @@
         :condition (and 
             (at start (and 
                 (at_crate ?r ?c)
-                
+                (not_working_together)
             ))
             (over all (and 
                 (carry ?r ?c)
                 (<= (weight ?c) 50)
                 (not_fragile ?c)
+                
             ))
         )
         :effect (and 
@@ -279,7 +284,11 @@
         :effect (and 
             (at start (and 
                 (not (at_base ?r1 ?b))
-                (not (at_base ?r2 ?b))))
+                (not (at_base ?r2 ?b))
+                (working_together)
+                (not(not_working_together))
+                ))
+                
             (at end (and 
                 (at_crate ?r1 ?c)
                 (at_crate ?r2 ?c)
@@ -301,6 +310,7 @@
             (over all (and 
                 (carry ?r1 ?c)
                 (carry ?r2 ?c)
+                (working_together)
             ))
         )
         :effect (and 
@@ -331,6 +341,7 @@
                 (carry ?r1 ?c)
                 (carry ?r2 ?c)
                 (<(weight ?c) 50)
+                (working_together)
             ))
         )
         :effect (and 
