@@ -53,8 +53,8 @@
         (no_group crate4)
 
         (=(velocity) 10)
-        (=(priority)2)
-        (=(max_priority )2)
+        (=(priority)4)
+        (=(max_priority )4)
     )
 
     (:goal (and
