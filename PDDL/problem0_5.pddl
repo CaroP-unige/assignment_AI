@@ -5,7 +5,7 @@
         crate1 crate2 - crate
         base1 - base
         loader1 - loader
-        loader2 - loader ; cheap
+        loader_leggero1 - loader_leggero ; cheap
     )
 
     (:init
@@ -30,8 +30,6 @@
         
         (= (weight crate1) 70)
         (= (weight crate2) 20)
-
-        (free_charge base1) 
 
         (not_fragile crate1)
         (not_fragile crate2)
