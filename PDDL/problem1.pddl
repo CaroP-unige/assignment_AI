@@ -44,13 +44,13 @@
         (= (battery robot2) 20) ;carica iniziale robot2
         (= (max_battery) 20)
 
-        (groupA crate1)
+        (no_group crate1)
         (groupA crate2)
-        (groupB crate3)
+        (groupA crate3)
 
         (=(velocity) 10)
-        (=(priority)2)
-        (=(max_priority )2)
+        (=(priority)3)
+        (=(max_priority )3)
     )
 
     (:goal (and
