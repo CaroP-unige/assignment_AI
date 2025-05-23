@@ -4,7 +4,7 @@
     
     (:requirements :strips :fluents :durative-actions :timed-initial-literals :typing :conditional-effects :negative-preconditions :duration-inequalities :equality)
     
-    ; I tipi definiscono categorie di oggetti (es. robot, cassa, stanza) e aiutano a specificare le entità coinvolte nel dominio.
+    Types define categories of objects (e.g. robot, crate, room) and help to specify the entities involved in the domain.
     (:types 
         robot ; mover
         base
@@ -13,19 +13,19 @@
         loader_leggero
     )
 
-    ; I predicati rappresentano proprietà o relazioni tra oggetti, valutate come vere o false in un determinato stato del mondo.
+    Predicates represent properties or relationships between objects, evaluated as true or false in a given state of the world.
     (:predicates 
-        (at_base ?r - robot ?b - base) ; il robot è alla base
-        (free ?r - robot) ; il robot è libero
-        (pickable_crate ?c - crate) ; la cassa può essere trasportata dal robot
-        (at_crate ?r - robot ?c - crate) ; il robot è alla cassa
+        (at_base ?r - robot ?b - base) the robot is at the base
+        (free ?r - robot) ; the robot is free
+        (pickable_crate ?c - crate) ; the crate can be transported by the robot
+        (at_crate ?r - robot ?c - crate) ; the robot is at the crate
         (carry ?r - robot ?c - crate) ; il robot sta trasportando una cassa
         (at ?c - crate ?b - base) ; la cassa è alla base (pronta per essere caricata sul nastro)
         (free_loader ?l - loader) ; il loader principale è libero
         (pick_load ?l - loader ?c - crate) ; il loader principale ha preso una cassa
         (on_belt ?c - crate) ; la cassa è sul nastro
 
-        ; predicati per fare lavorare insieme i due robot (in caso di crate pesanti, fragili o leggere per essere più veloce)
+        predicates to make the two robots work together (in case of heavy, fragile, or light crates to be faster)
         (not_working_together) ; i due robot non lavorano insieme
         (working_together) ; i due robot lavorano insieme
 
