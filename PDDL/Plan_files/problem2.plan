@@ -1,0 +1,35 @@
+;;!domain: definitivo
+;;!problem: problem2
+
+0.00000: (move_two_robot_to_crate robot2 robot1 crate1 base1) [1.00000]
+1.00100: (pick_up_two_robot crate1 robot2 robot1) [1.00000]
+2.00200: (move_back_two_robot crate1 base1 robot2 robot1) [7.00000]
+9.00200: (drop_two_robot_a base1 crate1 robot2 robot1) [1.00000]
+10.00300: (charging robot2 base1) [8.00000]
+10.00300: (grasp crate1 base1 loader1) [0.00100]
+10.00300: (loading loader1 crate1 base1) [4.00000]
+18.00400: (charging robot1 base1) [8.00000]
+26.00500: (move_two_robot_to_crate robot2 robot1 crate2 base1) [2.00000]
+28.00500: (pick_up_two_robot crate2 robot2 robot1) [1.00000]
+29.00500: (move_back_two_robot crate2 base1 robot2 robot1) [16.00000]
+45.00500: (drop_two_robot_a base1 crate2 robot2 robot1) [1.00000]
+46.00600: (grasp crate2 base1 loader1) [0.00100]
+46.00600: (loading_fragile loader1 crate2 base1) [6.00000]
+46.00600: (charging robot1 base1) [18.00000]
+64.00700: (move_to_crate robot1 crate4 base1) [1.00000]
+64.00700: (charging robot2 base1) [18.00000]
+65.00700: (pick_up crate4 robot1) [1.00000]
+66.00700: (move_back crate4 base1 robot1) [3.00000]
+69.00700: (drop_b base1 crate4 robot1) [1.00000]
+70.00700: (move_to_crate robot1 crate3 base1) [2.00000]
+70.00800: (grasp crate4 base1 loader1) [0.00100]
+70.00800: (loading loader1 crate4 base1) [4.00000]
+72.00700: (pick_up crate3 robot1) [1.00000]
+73.00700: (move_back crate3 base1 robot1) [4.00000]
+77.00700: (drop_b base1 crate3 robot1) [1.00000]
+78.00800: (grasp crate3 base1 loader1) [0.00100]
+78.00800: (loading loader1 crate3 base1) [4.00000]
+
+; Makespan: 82.008
+; Metric: 82.008
+; States evaluated: 98

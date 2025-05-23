@@ -1,0 +1,28 @@
+;;!domain: definitivo
+;;!problem: problem1
+
+0.00000: (move_two_robot_to_crate robot2 robot1 crate1 base1) [1.00000]
+1.00100: (pick_up_two_robot crate1 robot2 robot1) [1.00000]
+2.00200: (move_back_two_robot crate1 base1 robot2 robot1) [7.00000]
+9.00200: (drop_two_robot base1 crate1 robot2 robot1) [1.00000]
+10.00300: (grasp crate1 base1 loader1) [0.00100]
+10.00300: (loading loader1 crate1 base1) [4.00000]
+10.00300: (charging robot2 base1) [8.00000]
+18.00400: (charging robot1 base1) [8.00000]
+18.00400: (move_to_crate robot2 crate3 base1) [2.00000]
+20.00400: (pick_up crate3 robot2) [1.00000]
+21.00400: (move_back crate3 base1 robot2) [4.00000]
+25.00400: (drop_a base1 crate3 robot2) [1.00000]
+26.00500: (grasp crate3 base1 loader1) [0.00100]
+26.00500: (loading loader1 crate3 base1) [4.00000]
+26.00500: (charging robot2 base1) [6.00000]
+32.00600: (move_two_robot_to_crate robot2 robot1 crate2 base1) [2.00000]
+34.00600: (pick_up_two_robot crate2 robot2 robot1) [1.00000]
+35.00600: (move_back_two_robot_leggero crate2 base1 robot2 robot1) [2.66600]
+37.67200: (drop_two_robot_a base1 crate2 robot2 robot1) [1.00000]
+38.67300: (grasp crate2 base1 loader1) [0.00100]
+38.67300: (loading_fragile loader1 crate2 base1) [6.00000]
+
+; Makespan: 44.673
+; Metric: 44.673
+; States evaluated: 60
